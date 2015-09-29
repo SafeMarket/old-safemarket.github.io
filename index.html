@@ -3,59 +3,85 @@
 	<title>SafeMarket</title>
 	<meta property="og:image" content="http://safemarket.github.io/thumb.jpg"/> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/bower_components/normalize-css/normalize.css">
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
 	<style>
-		a{color:#6b6bb2;text-decoration: none}
+		a{color:inherit;text-decoration: none}
 		img{max-width: 100%; border: 1px solid #eee;margin-bottom:10px;}
+		#hero{position: relative;overflow: hidden; min-height:100%;background-color: #490A3D;color:white;}
+		#particles{position: absolute; top:-25%; left:-25%; height:150% !important; width:150%;}
+		#title{
+			position:absolute;
+			top:50%;margin-top:-80px;
+			text-align: center;width:100%;
+		}
+		#title,h1,h2,h3,h4{font-family: 'Share Tech Mono'; margin-bottom: 10px}
+		h1{font-size: 48px}
+		.highlighted{background-color: black;padding:.1em .2em;display: inline-block;}
+		.container{
+			max-width: 800px;
+			margin:0px auto;
+			padding:0 20px;
+		}
+		.section{padding:20px 0;}
+		.section:nth-child(odd){background:#eee;}
+		p{margin-top: 10px}
+		#icons{font-size: 36px;margin-top: 20px;}
+		#icons i{opacity: .5}
+		#icons i:hover{opacity: 1}
 	</style>
 </head>
-<body>
-<div style="max-width:600px;margin:0px auto;padding:10px">
-<h1>SafeMarket</h1>
-<p>
-	<b>SafeMarket</b> is a <a href=""></a> (1) trustless, (2) decentralized, and (3) pseudonymous marketplace.
-</p>
-<ol>
-	<li><b>Trustless:</b> None of your private keys leave your computer.</li>
-	<li><b>Decentralized:</b> Data is written to the blockchain, meaning every bitcoin node holds a signed, provable copy.</li>
-	<li><b>Pseudonymous:</b> Your transactions can be linked together, but never linked to a real-world identity assuming you practice good bitcoin hygeine.</li>
-</ol>
-<p>
-	This software is still in testing and will likely have breaking changes, but I encourage you to try out the beta. Subscribe to /r/SafeMarket for updates.
-</p>
-<ul>
-	<li><a href="https://github.com/SafeMarket">Github</a></li>
-	<li><a href="https://reddit.com/r/SafeMarket">r/SafeMarket</a></li>
-	<li><a href="https://github.com/SafeMarket/SafeMarket/blob/master/safemarket.xpi?raw=true">Download</a></li>
-	<li><a href="bitcoin:147BM4WmH17PPxhiH1kyNppWuyCAwn3Jm4">Donate to 147BM4WmH17PPxhiH1kyNppWuyCAwn3Jm4</a></li>
-</ul>
-<h3>Screenshots</h3>
-<img src="screenshots/vendor.png">
-<img src="screenshots/order.png">
-<h3>Getting started</h3>
-<ol>
-	<li>Download the add-on</li>
-	<li>In Firefox or TorBrowser, head to the Add-Ons menu (its located under the burger menu right of the URL bar).</li>
-	<li>Click the gear icon, then "Install Add-on From File" and select the safemarket.xpi file you previously downloaded.</li>
-	<li>Head to any page and right click anywhere on the page. Then select "Open SafeMarket".</li>
-	<li>Head to the vendor tab and try out the xpubkey for Satoshi's Lemonade Stand: <code style="word-wrap:break-word">xpub661MyMwAqRbcGntu46CZtzegh5V3vT624SJqPVUgqzboX6A39f1hb8vEMrG555gV5QzVXEpPXqwayMQKu1ZKKRLkX9AoFvqPwAm3qL24AnE</code></li>
-</ol>
-<h3>How</h3>
-<p>SafeMarket allows vendors to create special types of bitcoin transactions that add specific information to the blockchain. This information contains things like the vendor's product catalog and pgp key. By supplying the vendor's xpubkey, anyone can download this information directly from the blockchain.</p>
-<p>Buyers can select the products they wish to buy and the quantities they wish to purchase. SafeMarket will generate a cryptographically secure <b>receipt</b> containing the order and shipping information. SafeMarket does not provide a method for receipt exchange, it is assumed buyers and sellers will use tools such as email, IM, and bitmessage to exchange receipts.</p>
-<p>To anyone listening, a receipt looks like gibberish. But the buyer and seller can indepently decrypt the receipt and validate the status of an order.</p>
-<p>This is what a receipt looks like</p>
-<pre style="max-width:100%;overflow:scroll;background-color:#eee;padding:5px;">&lt;receipt>LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tDQpWZXJzaW9uOiBPcGVuUEdQLmpzIHYxLjAuMQ0KQ29tbWVudDogaHR0cDovL29wZW5wZ3Bqcy5vcmcNCg0Kd2NCTUE5N0ZPbS9xYXFCakFRZitQVlY3REtqUlJoL2dWVjlDR054Nlgyem4yaUlFcGVjaCtpd1BnUUxOCkNmOWg3K0V3L2UrWDNvemdGOUV4YWJRSlA5czBOV3JwLzc1VndrRkd1b2dYMUJldWJGMVcxK0RUdi9VbwpFMWxNM25qZFc4aXo5UWhmdjUvaGJXS0pUaWJqZVM4b3BGR0VVWFhDUDZxNDc3aTV2SXg1RnA4QWpBQjAKelE4VUhmaDZkYVpuZi9UQitlblo1ZmZKNUc3OGhHVjNWWm9Ocnd3MVhUb3VvVWIvODFFaytnb2huMm16Cmh0bmRHT3IwUEphRkRlQ2JGRm9UQm1qR3BmZy9Jelh0Qit5NjU2dkdlTVdtRnQrNitCaEpBbFRlblJTYgplbDFXa3RsWC9LQUhXUkEvQllZaGdhMWZrQkZyaGQwMzVHMjhubzF6S1ZlbUJlV2wzdm41QS9iK0k5WTUKRXRMSUhBRXlIaUgraktNMkNBeUlDQk5nNWZYdnR1dkFzb1l2aDRxcGZndGdNNFlmYStVYW02YitXT2dSClRaM0JwblJZZSt2bExycmpzdVc3TjdHL2hRMzkycUdBRHp6Y2tITUpFWUUwbU53U2NMZ1hSakNHSDliZgpVZnFnM0Q1U0lnTlBVQkRzSDJuNnZvNnJNbFExM21FemZnN2h6NHRKNHE2TmJ4bFNDcWcwTGRpUHAwQngKRmhNMncyRk56dHhvYk1uamZ1Umt0TjFzWms2a1JYbXI3QzFTYURjRno1L0c5bmloY24xcGVaZW1mQVpoCi9xK1FWNkFMSDhqVEpzcCs3cjJHbkdNZU1sWEJPbHZidXMvL3BQY1BkVU9VbG5mREJndE1GMktaWitXSApqMTVqSGt3TkpUMERMbWlLYjNqM0J1VDhieVNWZzg4VW8vb21TWVlDdkZVMTU0ZzVyeXFaYXdRTlVmVU8Kb0ZaYnlhTmdScGkxZ0hxeGlFNlZvOEtLalJ6N1V3SUJyTlY4YjJMTVB5cWFISXNESDN1TFdUMFhrazFwCmRxSG8zUVkwT2hoR01qUlNSNXFyRkhMSDBmRW1mMUJOZ3N5SHE4WmtsLytUU0ZxVGtROGRuR2RoUDhrMwoxMnBIOW9aaXlOeGlNOVV2V0pjSzlEU1ZiVE1oN3RvMnpzWUJPdFF3bk1uanV3RUxmNFRqMWpvdEZYWmUKMWpXV2FkdUZGTEc3SzZrL3lGVjV6WTBQV0djdy9MclI2MjFOeWpWZmVyM05yQ1kwRlhLZjlDS3JCb0RwCldYZm9DbU16R3J5S0xKRlJaNFFhMzJNNHI0NjZTL3NQWi9tZ1Vwa3QxaVZSeHFsdDJMdnNFd0dISXlIZgo1cnFjR3EzRHNMQjl4RWZBbzN4ajFUa0NIUTNxR3VEM1lzOE96RmZTTGxMUW9tU0hwMXpGNjZBd0RxeXYKdWlONCsxS1Fwa1lEQzVGcm5oZUJ6cWJWSy9Da2JTNHc4dW42MXhVOVNZZWdKdXUxSE81QlpuNGpreDZqCmV6MjJyb2g5Y1czamducWUvYXRxcWJQOGVNTmNoNGt6bE11K1lGbkE5cFdXM2pmSSt3c1Q4SlpCRDR5NAozeGgwSlBrOC9PU25zQ1VLKy80ajAxTjJLRFIxSzhkVS9EOUFjbjdLRHJvd1lUZGxVa01aUWxlUWphck0KN0xaVS8yaVc3Umh6UjhNd0lZVnFvOWFLcThVbDc2Z0ZjMUdESXpMUlpOMUc1eWUreHdSK3lIV3B2SHkwCjV6OWJhcW1ObE43dWhPdzc4SGxVaThwaDNYdytJTE5mY2RwZXhvbTVGTGhoVGJQT3owSDl4RWZNaFUzYwpBclMydDZQbnhLb01QZEw0c1JwRUVXcmFkVVJpMHFGSlpTN3VBYkJkbWxsb28wWmFEQmNBcklvZlhESzIKT2RDZWtwNUJRYklEQ0x3dDZmVlNNYWl2RnMxK2NJQ28vczBIMnQveFg5WHFTZFdtM0VjNUgxS0NqWWxoClVuRTN0dUdHN1B3N1VJRU5Ua0tUZjl2VW5UVUFJZndWOVJaU0FzaHdjVjBka0JRUXNQSHUvZ2d5dFNyMApTQ0VWMlJFcUpxaC9ubzFkMlJMQk1BejVuM3BWT1BXTDRQN2Nza1FOZjJQZFY0dFpYQVN6UVM1eGc3a08KU0ExVzdOUEhwSVdVMXVOYlUyTmltZDZjNEE5ei9MUHlkSUd5WnlsSk9UOFJ4YWhqQm1tTSt0MnZhMGNmCmRwcjZubVliWk1VaUgwbFN2cTNBZjVSTGhPK1JRd3ppSThpRXdQU0ZCajhuMXJSMFJyYTVYblN1YytnbQpVVFU0QkE1dEY0eit0SGRSTUNYbUM2bVhacUtIeWpoL1NDNndEMk4vcERnMjFXUm5xcnlHaldkeDY0V2kKeU5EaGZ2Q2NWYXJSdUdzN3ZVV0dHK29mU0tDVnFLRVAyODZDbm1HNDdLei80QnQ2NWdpZlNOVU81R1pSCmhXanFUMGFoeTFkclNKcTVjV1FkNHRvQ0lwWDdRMURxcG5zMm9EQThLZThrbkJ6ZEt5bHpoS3pJT0p6bApYWkZzY1NJYUp2ZWErOXlEUEhYWEFtVzZoMnBDcDBRMU50TVJYYUYvRkQxcDE3VStDTVRPaXRBQ0V6c3kKeGQrT08xYllldUJTZHV0V1BEVy84VFhCRCtrTmhodlRTbEJ6cjR1aFJqeXZuNGtMbndyM3F4NHdlQWpBCitjSlpCVmc1RStpaWpJV1dUZFdCU0lOV096eGNDbTFHQXF5U0xHdDMzNlZCTnovdHRCa1N0WVlYS1FXdwo0YThmMDBsNXArcy9KanBNZlJMQTdBZmg4cXlFazgzZzV5eEhjRUpkT3BjMVNhLytPelNtR0p5UmFSZ1MKenlWK3JOS3lqaEhaODRKT2FaNXFyaWkxMGRFMVdXd0wrbWdzeVY2VFczYlZSaGNsZjhyZEt1Um1kQ1hhCklpakFhdGF5Q25QZ1RueW1YelQ5V1VMdWkvZXBaVlY2cGZtRnc3Vm5FZ3pEemhCaCtEMnpMdStYbmJILwozUVJJZXp5a3FtTGhIRW8yWXc4N1UvS0Nkb2RteUJPSUxUbHA5SmF0WGhkb1Zmbm9QVllWaDk5U1NUUXAKOFFtc3VNUmJyb2w2S0EyNFhwR0JGY1Uxd1E5Z3FDanhYUEtPb1MyMHUwNEx2b0F5NnZFZnBEZ0RNZUNDClBaWXllbktTdVlnRUFjUWtVbWhHd0RjTThiL3NCbmhzUThlY3daVm00a2wxREVKaC9sSjVmc2x5cGxvUgozdHZpZTlEVXFoNkVERStNOUprNGtFMzVvcTUrODhPUlMrZjMvUytGcGJIcG9nRk9DK0kxWTZ3OWYzNnUKd1hBYWJreGJiYm1ibE9rN09OUVNwcE9OZ1poQzBxTjZhZlhySWx1a2gwOE9kRU5ENUxER09IVlhIeDJJCjhqL1VQczJ1bEJEQmszc2w5V2RPdWd3TDZZLytIbkRZNUNSK0NDRWZYL3F4SGxyNzZtaUNGK3duRTZDbwpoemtDcXdQTDJCQUNqclJNeVM2bnhVT0pBQURKdGVkS0M4V2hrTGh0Mk5lazRYUWx0RU12dkVYOSsyODAKUVltcHF6clpyNmQrZjhXRHAvbGd3NCt2UnkxQk5HcllmMWRCOHk5RklhRG5vMkF4WGJ0VVFyaStuaEFsCmpOVng0dXFsZS8vbUtiWGxhRnV4a2syZzRnYTJkNmxGejBDSzk5QkJOdkJPd0pFZ1grZnQ1NFpyVDZCQgp0VTcwN1FiakZ5WEg2N1pHTGZtUFU5VHFoaUE2Q09CTGVYL0RFZCtCZW5ObG5weVRZaW16ck90aTlLNjAKc3NjSDd3ZE5GV2VQeElnME1tZ0kwU0ozVkRmSGRXaThhaE9IVnhSNDd1NXF1T2ZaZTdMSFIvRTUxY0diCmo0ZldxNk1Od000dXR0RzF6YWxZNk1xY3VIK0xxRFd4Rjl0NERLSFJtWUlVSlgwTnZxckJ1SklpNjVVWApiazc1ZjI0N1dZOXhFTng5SGp5dFRTdTEySklObjRjYlhKYVI4N1ppSXdQUGNJdjBRb3RRV3JycHpDZzUKUjMvUDRDRmE5dFczdk1jVE5yQnMyVVR6VUNBZGVQalk2cnFOai9hK09lNXZjdElDbzV3R1NVcEpvb3FCCjFacm52elBraHcydkdqUWFBQWF6Tk56TWpQT1QxYlZ2Z29TckxjR2RMNFNIWFFsMzduSHBmYVR1QTFBNgpLYXg5YmVXU0FYOTllRm9hRy94SGZlZDYvNkovWEdDRUFOUDB1Z1ArSjFsOGFScnd0c01EMVFxNGIxRDQKd3U3ZXNHZitSemdoYzVab0YvbHplaTNVamcvdzhlQVNMdGU5cU1jdUpsdit6djhUWkEzZWhyVlU1RDBYCkJvUnVWczJqNWhrT0ozeFZpWEdTSjJFaVBoZXNOWUoyVkltMzZLNlRzSThiZHBiRGQxbUtmMHhIeFY2cwpaaWhTZW9Sa1k0RkorcWlNM2lJT0laZG9jT1dHZkE9PQ0KPUI1Y2wNCi0tLS0tRU5EIFBHUCBNRVNTQUdFLS0tLS0NCg==&lt;/receipt></pre>
-<p>And this is what a receipt looks like once its been decrypted by SafeMarket</p>
-<img src="screenshots/order.png">
-<h3>Security</h3>
-<h4>IP Obfuscation</h4>
-<p>If you are using TorBrowser, all outgoing requests will be made through the Tor network. This means your IP address will not be revealed.</p>
-<h4>XSS Protection</h4>
-<p>SafeMarket uses Angular for text sanitation. We only allow requests to the two domains necessary for SafeMarket to function.</p>
-<p><a href="https://github.com/SafeMarket/SafeMarket/blob/master/package.json#L10-L13">You can view those domains.</a></p>
-<h4>Browser Fingerprinting</h4>
-<p>You may have heard that Add-Ons like SafeMarket can be used to "fingerprint" you. This is true of some add-ons, but it is not true of SafeMarket. Some add-ons, like ad-blockers, need to inject various scripts and stylesheets onto the pages you visit in order to function. SafeMarket does not inject any resources, and therefore can not be used for fingerprinting.</p>
-<p><a href="https://github.com/SafeMarket/SafeMarket/blob/master/lib/main.js#L1-L4">You can verify that SafeMarket does not use any of the SDKs necessary to fingerprint you.</a></p>
-</div>
+<body ng-app="app">
+<div>
+	<div id="hero">
+		<div id="particles"></div>
+		<div id="title">
+			<h1><span class="highlighted">SafeMarket</span></h1>
+			<span>The Decentralized, Censorship-Resistant, Anonymous Marketplace</span>
+			<br><span >Powered By
+				<span ng-show="!isBitcoiner">Ethereum</span>
+				<span ng-show="isBitcoiner" ng-cloak>the Blockchain</span>
+			</span>
+			<div id="icons">
+				<a href="https://reddit.com/r/safemarket"><i class="fa fa-reddit-square"></i></a>
+				<a href="https://github.com/SafeMarket"><i class="fa fa-github-square"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+	<div class="container">
+		<h2>Our Mission</h2>
+		<p>SafeMarket's goal is to provide safer access to the things people already buy. Academics agree on what most of us already know, online markets improve product quality and save lives. We're working on a platform that rewards trustworthy merchants and creates an economy of independent product regulators</p>
+		<h2>SubMarket Design</h2>
+		<p>Rather than creating a single monolothic market, SafeMarket is a platform that anyone can open up their own "submarket" and start earning comission. You can think of submarkets like subreddits, small communities dedicated to an individual product. Submarket admins are in charge of regulating merchants and settling disputes. The goal is to have multiple submarkets competing to be known as the best regulators.</p>
+		<h2>1st Class Anonymity</h2>
+		<p>Anonymity is the central pillar of SafeMarket. Every interaction on the market is no more traceable than a bitcoin transaction. The software handles encryption so you don't have to worry about PGP keys any more.</p>
+		<h2>Censorship Resistant</h2>
+		<p>All data is stored directly on the blockchain. There are no servers to take down or hack. As long as you run a node, you have a full copy of the marketplace.</p>
+	</div>
+	</div>
+	<div class="section">
+	<div class="container">
+		<h2>FAQ</h2>
+		<h3>How does SafeMarket differ from OpenBazaar?</h3>
+		<p>OpenBazaar has zero protections of anonymity and your IP address is directly linked with all your interactions inside the network. OpenBazaar can not and will not be integrated with Tor, i2p, or any other anonymization technology that currently exists. It is also our opnion that router-based systems (such that OpenBazaar uses) are fundamentally weaker than blockchain-based systems.</p>
+	</div>
+	</div>
+	<script src="/bower_components/angular/angular.min.js"></script>
+	<script src="/bower_components/particles.js/particles.min.js"></script>
+	<script>
+
+		particlesJS.load('particles', '/particles.json', function() {
+		  console.log('callback - particles.js config loaded');
+		});
+
+		angular
+			.module('app',[])
+			.run(function($rootScope){
+				$rootScope.isBitcoiner = document.referrer.toLowerCase().indexOf('/r/bitcoin')!==-1
+			})
+
+	</script>
 </body>
 </h1>
